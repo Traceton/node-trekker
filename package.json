@@ -1,6 +1,6 @@
 {
-  "name": "nodescaffold",
-  "version": "1.0.0",
+  "name": "node-treker",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
