@@ -1,5 +1,5 @@
-const { generateModel } = require("../generator/generateModel");
-const { generateEmptyServer } = require("../generator/generateEmptyServer");
+const { generateModel } = require("./generateModel");
+const { generateEmptyServer } = require("./generateEmptyServer");
 const initiateGenerator = async (userInput) => {
   if (userInput[1] === "model" || userInput[1] === "m") {
     generateModel(userInput);
