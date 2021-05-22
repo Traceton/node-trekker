@@ -18,4 +18,5 @@ const dropBoxAnswerSchema = new mongoose.Schema({
 
 module.exports = mongoose.model("dropBoxAnswer", dropBoxAnswerSchema);
 
+// example command to create a mongoose model.
 // g m user dropBoxId:String dropBoxAnswer:String
