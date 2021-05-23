@@ -1,8 +1,8 @@
-const { createDirectory, createFile } = require("../utils");
+const { createDirectory, createFile } = require("../../utils");
 const { existsSync } = require("fs");
 
-const { generateRouter } = require("./generateRouter");
-const { generateModel } = require("./generateModel");
+const { generateRouter } = require("../routers/generateRouter");
+const { generateModel } = require("../models/generateModel");
 
 // example command below
 // use command --> g router-with-model user id:String name:String

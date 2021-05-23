@@ -1,4 +1,4 @@
-const { createDirectory, createFile } = require("../utils");
+const { createDirectory, createFile } = require("../../utils");
 const { existsSync } = require("fs");
 
 const generateEmptyRouter = async (userInput) => {

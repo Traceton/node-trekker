@@ -1,8 +1,10 @@
-const { generateModel } = require("./generateModel");
-const { generateRouter } = require("./generateRouter");
-const { generateEmptyServer } = require("./generateEmptyServer");
-const { generateEmptyRouter } = require("./generateEmptyRouter");
-const { generateRouterWithModel } = require("./generateRouterWithModel");
+const { generateModel } = require("./models/generateModel");
+const { generateRouter } = require("./routers/generateRouter");
+const { generateEmptyServer } = require("./serverFiles/generateEmptyServer");
+const { generateEmptyRouter } = require("./routers/generateEmptyRouter");
+const {
+  generateRouterWithModel,
+} = require("./comboGenerators/generateRouterWithModel");
 
 const generatorController = (userInput) => {
   if (userInput[1] === "model" || userInput[1] === "m") {
