@@ -1,7 +1,7 @@
 const { createDirectory, createFile } = require("../utils");
 const { existsSync } = require("fs");
 
-const { generateEmptyRouter } = require("./generateEmptyRouter");
+const { generateRouter } = require("./generateRouter");
 const { generateModel } = require("./generateModel");
 
 // example command below
@@ -10,7 +10,7 @@ const { generateModel } = require("./generateModel");
 // use command --> g router-with-model car id:String name:String
 
 const generateRouterWithModel = (userInput) => {
-  generateEmptyRouter(userInput);
+  generateRouter(userInput);
   generateModel(userInput);
 };
 

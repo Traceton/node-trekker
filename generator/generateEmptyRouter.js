@@ -36,5 +36,3 @@ module.exports = router;
 };
 
 module.exports = { generateEmptyRouter };
-
-// g empty-router cupcakes

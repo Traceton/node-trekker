@@ -41,12 +41,12 @@ PORT=3001`;
   if (!existsSync(".env")) {
     createFile(`.env`, envFile);
   } else {
-    console.log(".env already exists and cannot be generated.");
+    // console.log(".env already exists and cannot be generated.");
   }
   if (!existsSync("server.js")) {
     createFile(`server.js`, emptyServer);
   } else {
-    console.log("server.js already exists and cannot be generated.");
+    // console.log("server.js already exists and cannot be generated.");
   }
 };
 
