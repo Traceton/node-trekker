@@ -1,7 +1,7 @@
 const { generateModel } = require("./generateModel");
 const { generateEmptyServer } = require("./generateEmptyServer");
 const { generateEmptyRouter } = require("./generateEmptyRouter");
-const initiateGenerator = async (userInput) => {
+const generatorController = async (userInput) => {
   if (userInput[1] === "model" || userInput[1] === "m") {
     generateModel(userInput);
   } else if (userInput[1] === "empty-server" || userInput[1] === "e-s") {
@@ -11,4 +11,4 @@ const initiateGenerator = async (userInput) => {
   }
 };
 
-module.exports = { initiateGenerator, generateModel };
+module.exports = { generatorController, generateModel };
