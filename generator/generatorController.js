@@ -1,5 +1,6 @@
 const { generateModel } = require("./models/generateModel");
 const { generateRouter } = require("./routers/generateRouter");
+const { generateRestTest } = require("./tests/generateRestTest");
 const { generateEmptyServer } = require("./serverFiles/generateEmptyServer");
 const { generateEmptyRouter } = require("./routers/generateEmptyRouter");
 const {
@@ -11,6 +12,8 @@ const generatorController = (userInput) => {
     generateModel(userInput);
   } else if (userInput[1] === "router" || userInput[1] === "r") {
     generateRouter(userInput);
+  } else if (userInput[1] === "tests" || userInput[1] === "t") {
+    generateRestTest(userInput);
   } else if (userInput[1] === "empty-server" || userInput[1] === "e-s") {
     generateEmptyServer(userInput);
   } else if (userInput[1] === "empty-router" || userInput[1] === "e-r") {
