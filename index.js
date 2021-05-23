@@ -13,8 +13,6 @@ rl.question("node-treker command:  \n", (commandName) => {
   let userInput = commandName.trim().split(" ");
   if (userInput[0] === "generate" || userInput[0] === "g") {
     generatorController(userInput);
-  } else if (userInput[0] === "generate" || userInput[0] === "g") {
-    generatorController(userInput);
   }
   rl.close();
 });
