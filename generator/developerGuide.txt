@@ -4,11 +4,11 @@ I began building this mainly as a tool for when i am created a simple node js se
 
 Main rest endpoints we want to have when a router or rest file is generated:
 
-POST a single new instance of a certain model
-
 GET all of the instances of a certain model
 
 GET a single instance of a certain model by id
+
+POST a single new instance of a certain model
 
 PATCH a single instance of a certain model
 

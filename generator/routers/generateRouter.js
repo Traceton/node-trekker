@@ -10,23 +10,99 @@ const generateRouter = async (userInput) => {
   let ModelAttributes = userInput.slice(3);
 
   let finalAttributesForJSON = [];
+  let preAttributesForPatchMethod = [];
 
   ModelAttributes.map((item) => {
     let modelAttribute = item.split(":");
-
     let attributeName = modelAttribute[0];
     let attributeType = modelAttribute[1];
-
     let AttributesForJSON = `${attributeName} : req.body.${attributeName}`;
-
+    let attributesForPatchMethod = `if (req.body.${attributeName} != null) { 
+      res.user.${attributeName} = req.body.${attributeName};
+    }`;
     finalAttributesForJSON.push(AttributesForJSON);
+    preAttributesForPatchMethod.push(attributesForPatchMethod);
   });
+
+  let finalAttributesForPatchMethod = preAttributesForPatchMethod
+    .toString()
+    .replace("[", "")
+    .replace("]", "")
+    .replace(/,/g, "");
 
   let router = ` const express = require("express"); 
 const mongoose = require("mongoose");
 const router = express(); \n
 
 const ${upperCaseModelName} = require("../models/${routerName}"); \n
+
+// middleware for finding ${routerName} by id
+let findById = async (req, res, next) => {
+  let ${routerName};
+  try {
+    ${routerName} = await ${upperCaseModelName}.find({ ${routerName}_id: req.params.id });
+
+    if (!${routerName}) {
+      res.status(404).json({
+        message_type: "warning",
+        message: "could not find a ${routerName}",
+    });
+    return
+    }
+  } catch (error) {
+    res.status(500).json({
+            message_type: "error",
+            message: "Internal server error",
+            error: error
+        });
+  }
+  res.${routerName} = ${routerName}[0];
+  next();
+};
+
+// GET all of the instances of a certain model
+router.get("/${routerName}s", async (req, res) => { \n
+    const ${routerName}s = await ${upperCaseModelName}.find()
+    try{
+        if(${routerName}s) {
+            res.status(201).json({
+                message_type: "success",
+                message: "good response",
+                ${routerName}s:${routerName}s
+              });
+        } else {
+            res.status(404).json({
+                message_type: "warning",
+                message: "could not find a ${routerName}",
+            }); 
+        }
+        
+    } catch (error) {
+        res.status(500).json({
+            message_type: "error",
+            message: "Internal server error",
+            error: error
+        });
+    } \n
+}) \n
+
+// GET a single instance of a certain model by id
+router.get("/${routerName}/:id",findById, async (req, res) => { \n
+ 
+  try{
+      res.status(201).json({
+          message_type: "success",
+          message: "good response",
+          ${routerName}: res.${routerName}
+      });
+  } catch (error) {
+      res.status(500).json({
+          message_type: "error",
+          message: "Internal server error",
+          error: error
+      });
+  } \n
+}) \n
 
 
 // POST a single new instance of a certain model
@@ -59,62 +135,55 @@ router.post("/${routerName}", async (req, res) => {
   }
 })
 
-// GET all of the instances of a certain model
-router.get("/${routerName}s", async (req, res) => { \n
-    const ${routerName}s = await ${upperCaseModelName}.find()
-    try{
-        if(${routerName}s) {
-            res.status(201).json({
-                message_type: "success",
-                message: "good response",
-                ${routerName}s:${routerName}s
-              });
-        } else {
-            res.status(404).json({
-                message_type: "warning",
-                message: "could not find a ${routerName}",
-            }); 
-        }
-        
-    } catch (error) {
-        res.status(500).json({
-            message_type: "error",
-            message: "Internal server error",
-            error: error
+// PATCH a single instance of a certain model
+router.patch(
+  "/${routerName}/:id",
+  findById,
+  async (req, res) => {
+
+    ${finalAttributesForPatchMethod}
+
+    try {
+      const updated_${routerName} = await res.${routerName}.save();
+
+      if (updated_${routerName}) {
+        res.status(201).json({
+          message_type: "success",
+          message: "good response",
+          ${routerName}: updated_${routerName}
         });
-    } \n
-}) \n
-
-// GET a single instance of a certain model by id
-router.get("/${routerName}/:id", async (req, res) => { \n
- 
-
-  const ${routerName} = await ${upperCaseModelName}.find({
-    ${routerName}_id: req.params.id,
-  });
-
-  try{
-      if(${routerName}) {
-          res.status(201).json({
-              message_type: "success",
-              message: "good response",
-              ${routerName}:${routerName}
-            });
       } else {
-          res.status(404).json({
-              message_type: "warning",
-              message: "could not find a ${routerName}",
-          }); 
-      }
-      
-  } catch (error) {
-      res.status(500).json({
+        res.status(500).json({
           message_type: "error",
-          message: "Internal server error",
-          error: error
+          message: "could not save to database"
+        })
+      }
+    } catch (error) {
+      res.status(500).json({
+        message_type: "error",
+        message: "Internal server error",
+        error: error
       });
-  } \n
-}) \n
+    }
+  }
+);
+
+// DELETE a single instance of a certain model
+router.delete("/${routerName}/:id",findById, async (req, res) => {
+  try {
+    await res.${routerName}.remove();
+    res.status(201).json({
+      message_type: "success",
+      message: "${routerName} deleted."
+    });
+  } catch (error) {
+    res.status(500).json({
+      message_type: "error",
+      message: "Internal server error",
+      error: error
+    });
+  }
+});
 
 module.exports = router;
   `;
