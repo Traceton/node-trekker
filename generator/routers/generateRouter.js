@@ -87,7 +87,7 @@ router.get("/${routerName}s", async (req, res) => { \n
 }) \n
 
 // GET a single instance of a certain model by id
-router.get("/${routerName}/:id",findById, async (req, res) => { \n
+router.get("/${routerName}s/:id",findById, async (req, res) => { \n
  
   try{
       res.status(201).json({
@@ -106,7 +106,7 @@ router.get("/${routerName}/:id",findById, async (req, res) => { \n
 
 
 // POST a single new instance of a certain model
-router.post("/${routerName}", async (req, res) => {
+router.post("/${routerName}s", async (req, res) => {
   const ${routerName} = await new ${upperCaseModelName}({
     ${finalAttributesForJSON}
   })
@@ -137,7 +137,7 @@ router.post("/${routerName}", async (req, res) => {
 
 // PATCH a single instance of a certain model
 router.patch(
-  "/${routerName}/:id",
+  "/${routerName}s/:id",
   findById,
   async (req, res) => {
 
@@ -169,7 +169,7 @@ router.patch(
 );
 
 // DELETE a single instance of a certain model
-router.delete("/${routerName}/:id",findById, async (req, res) => {
+router.delete("/${routerName}s/:id",findById, async (req, res) => {
   try {
     await res.${routerName}.remove();
     res.status(201).json({
