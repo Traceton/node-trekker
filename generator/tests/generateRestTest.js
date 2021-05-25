@@ -10,7 +10,45 @@ const generateRestTest = async (userInput) => {
     # generated rest file from node-treker
     #model name - ${modelName}
 
+   # GET all of the instances of a certain model
     GET http://localhost:3001/${modelName}
+
+
+
+    ###
+
+
+
+    # GET a single instance of a certain model by id
+    GET http://localhost:3001/${modelName}/1
+
+
+
+    ###
+
+
+
+    # POST a single new instance of a certain model
+    POST http://localhost:3001/${modelName}
+
+
+
+    ###
+
+    
+
+    # PATCH a single instance of a certain model
+    PATCH http://localhost:3001/${modelName}/1
+
+
+
+    ###
+
+
+
+    # DELETE a single instance of a certain model
+    DELETE http://localhost:3001/${modelName}/1
+    
 
     `;
 
