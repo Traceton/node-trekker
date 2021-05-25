@@ -11,7 +11,6 @@ const generateModel = async (userInput) => {
   let idField = `${modelName}_id: {
     type: String,
     required: true,
-    
   }`;
   neWModelSchemaItems.push(idField);
   // maps through each command
