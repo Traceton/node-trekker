@@ -12,7 +12,7 @@ const generateServer = async (userInput) => {
     const server = express();
     const database = mongoose.connection;
 
-    const ${routerName}sRouter = require("./routes/${routerName}")
+    const ${routerName}sRouter = require("./routes/${routerName}s")
     
     mongoose.connect(process.env.DATABASE_URL, {
       useNewUrlParser: true,
