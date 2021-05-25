@@ -5,7 +5,6 @@ const generateEmptyRouter = async (userInput) => {
   const routerName = userInput[2];
 
   let emptyRouter = ` const express = require("express"); 
-const mongoose = require("mongoose");
 const router = express(); \n
 
 router.get("/", async (req, res) => { \n

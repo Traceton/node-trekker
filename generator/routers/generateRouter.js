@@ -31,7 +31,6 @@ const generateRouter = async (userInput) => {
     .replace(/,/g, "");
 
   let router = ` const express = require("express"); 
-const mongoose = require("mongoose");
 const router = express(); \n
 
 const ${upperCaseModelName} = require("../models/${routerName}"); \n
