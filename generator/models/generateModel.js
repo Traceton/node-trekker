@@ -12,7 +12,7 @@ const generateModel = async (userInput) => {
     type: String,
     required: true,
     
-  },`;
+  }`;
   neWModelSchemaItems.push(idField);
   // maps through each command
   modelItems.map((unSplitEntry) => {
