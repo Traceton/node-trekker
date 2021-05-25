@@ -19,7 +19,6 @@ const generateRestTest = async (userInput) => {
     finalAttributesForJSON.push(AttributesForJSON);
   });
 
-  console.log(finalAttributesForJSON);
   let restFile = `
     # generated rest file from node-treker
     #model name - ${modelName}
@@ -62,7 +61,7 @@ const generateRestTest = async (userInput) => {
       ${finalAttributesForJSON}
     }
 
-    
+
 
     ###
 

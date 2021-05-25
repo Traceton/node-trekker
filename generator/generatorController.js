@@ -6,6 +6,9 @@ const { generateEmptyRouter } = require("./routers/generateEmptyRouter");
 const {
   generateRouterWithModel,
 } = require("./comboGenerators/generateRouterWithModel");
+const {
+  generateServerRouterModel,
+} = require("./comboGenerators/generateServerRouterModel");
 
 const generatorController = (userInput) => {
   if (userInput[1] === "model" || userInput[1] === "m") {
@@ -20,6 +23,8 @@ const generatorController = (userInput) => {
     generateEmptyRouter(userInput);
   } else if (userInput[1] === "router-with-model" || userInput[1] === "rwm") {
     generateRouterWithModel(userInput);
+  } else if (userInput[1] === "server-router-model" || userInput[1] === "srm") {
+    generateServerRouterModel(userInput);
   } else {
     console.log("Sorry that command was not found");
   }
