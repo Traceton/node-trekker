@@ -8,7 +8,7 @@ const generateModel = async (userInput) => {
 
   let neWModelSchemaItems = [];
 
-  let idField = `${idField}_id: {
+  let idField = `id: {
     type: String,
     required: true,
     
