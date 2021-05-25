@@ -6,13 +6,24 @@ const { existsSync } = require("fs");
 const generateRestTest = async (userInput) => {
   const modelName = userInput[2];
 
+  let ModelAttributes = userInput.slice(3);
+
+  let finalAttributesForJSON = [];
+
+  ModelAttributes.map((item) => {
+    let modelAttribute = item.split(":");
+    let attributeName = modelAttribute[0];
+    let AttributesForJSON = `${attributeName} : req.body.${attributeName}`;
+    finalAttributesForJSON.push(AttributesForJSON);
+  });
+
   let restFile = `
     # generated rest file from node-treker
     #model name - ${modelName}
 
    # GET all of the instances of a certain model
     GET http://localhost:3001/${modelName}
-
+    Content-Type: application/json
 
 
     ###
@@ -21,7 +32,7 @@ const generateRestTest = async (userInput) => {
 
     # GET a single instance of a certain model by id
     GET http://localhost:3001/${modelName}/1
-
+    Content-Type: application/json
 
 
     ###
@@ -30,17 +41,21 @@ const generateRestTest = async (userInput) => {
 
     # POST a single new instance of a certain model
     POST http://localhost:3001/${modelName}
-
-
+    Content-Type: application/json
+    {
+      ${finalAttributesForJSON}
+    }
 
     ###
 
-    
+
 
     # PATCH a single instance of a certain model
     PATCH http://localhost:3001/${modelName}/1
-
-
+    Content-Type: application/json
+    {
+      ${finalAttributesForJSON}
+    }
 
     ###
 
@@ -48,7 +63,7 @@ const generateRestTest = async (userInput) => {
 
     # DELETE a single instance of a certain model
     DELETE http://localhost:3001/${modelName}/1
-    
+    Content-Type: application/json
 
     `;
 
