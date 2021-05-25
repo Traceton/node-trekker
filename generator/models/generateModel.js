@@ -8,6 +8,12 @@ const generateModel = async (userInput) => {
 
   let neWModelSchemaItems = [];
 
+  let idField = `${idField}_id: {
+    type: String,
+    required: true,
+    
+  },`;
+  neWModelSchemaItems.push(idField);
   // maps through each command
   modelItems.map((unSplitEntry) => {
     let entry = unSplitEntry.split(":");
