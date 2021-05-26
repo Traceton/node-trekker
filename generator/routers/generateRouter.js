@@ -173,7 +173,7 @@ router.patch(
 );
 
 // DELETE a single instance of a certain model
-router.delete("/:id",findById, async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     ${routerName}.findOneAndRemove({ ${routerName}_id: req.params.id }, function (err) {
       if (err) {
