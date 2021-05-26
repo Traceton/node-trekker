@@ -33,6 +33,7 @@
  ## Current Available commands:
 
  ### Generate a server.js, a router, model, and .rest test file:
+ ##### Don't forget to set a DATABASE_URL value in the .env file that is generated.
  ```
  Format: generate server-router-model model-name field-name:data-type field-name:data-type
  Example: generate server-router-model blogPost mainTitle:String description:String 
@@ -68,6 +69,7 @@
  ```
 
  ### Generate a basic node.js/express server with env file:
+ ##### Don't forget to set a DATABASE_URL value in the .env file that is generated.
  ```
  Example: generate empty-server 
  Short hand example: g e-s
