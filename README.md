@@ -33,9 +33,9 @@
  ``` npm run node-treker ```
 
  Current Available commands:
-
+```
  Generate a server.js, a router, model, and .rest test file:
- ``` Format: generate router-with-model model-name field-name:data-type field-name:data-type
+  Format: generate router-with-model model-name field-name:data-type field-name:data-type
  Example: generate router-with-model blogPost fullName:String firstName:String lastName:String ```
 
  Generate a router with a model:
@@ -61,4 +61,4 @@
  ``` generate empty-router ```
 
 
-```
+
