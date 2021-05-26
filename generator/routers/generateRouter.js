@@ -13,8 +13,8 @@ const generateRouter = async (userInput) => {
   let preAttributesForPatchMethod = [];
 
   let idForJSON = `${routerName}_id : req.body.${routerName}_id`;
-  let idForPatch = `if (req.body.${attributeName}_id != null) { 
-    res.${routerName}.${attributeName}_id = req.body.${attributeName}_id;
+  let idForPatch = `if (req.body.${routerName}_id != null) { 
+    res.${routerName}_id = req.body.${routerName}_id;
   }`;
   finalAttributesForJSON.push(idForJSON);
   ModelAttributes.map((item) => {
