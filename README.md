@@ -34,7 +34,7 @@
 
  Current Available commands:
 
- Generate a server.js, a router, model, and .rest test file.
+ Generate a server.js, a router, model, and .rest test file:
  Format: generate router-with-model model-name field-name:data-type field-name:data-type
  Example: generate router-with-model blogPost fullName:String firstName:String lastName:String
 
@@ -54,10 +54,10 @@
  Format: generate tests router-name/model-name field-name:data-type field-name:data-type
  Example: generate tests user id:Number firstName:String lastName:String
 
- Generate a basic node.js/express server with env file.
+ Generate a basic node.js/express server with env file:
  generate empty-server
 
- Generate a empty node.js/express router
+ Generate a empty node.js/express router:
  generate empty-router
 
 
