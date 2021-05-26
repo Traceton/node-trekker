@@ -2,11 +2,8 @@
 
 ### :rocket: Node-Treker is a small npm package for people using node.js, express, and mongoose to create a RESTFUL api.
 
-### basic use guide:
-
-#### :heavy_exclamation_mark: express, mongoose and dotenv are not required packages, but are what is supported here. :heavy_exclamation_mark:
-
 ## Install and setup:
+#### :heavy_exclamation_mark: express, mongoose and dotenv are not required packages, but are what is supported here. :heavy_exclamation_mark:
 
 ### navigate to your desired directory
 
