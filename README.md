@@ -16,14 +16,13 @@
 
 ### npm i dotenv express mongoose
 
-### npm i node-treker nodemon --save-dev
+### npm i node-treker nodemon -D
 
 ### Next, navigate to your package.json file and copy the node-treker script given here:
 
 ```
 ### "scripts": {
-    "node-trecker": "node node_modules/node-treker/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "node-trecker": "node node_modules/node-treker/index.js"
   }
 
 
@@ -35,11 +34,9 @@
 
 ## Current Available commands:
 
-### Generate a basic node.js/express server with env file.
-#### generate empty-server
-
-### Generate a empty node.js/express router
-#### generate empty-router
+### Generate a server.js, a router, model, and .rest test file.
+#### Format: generate router-with-model model-name field-name:data-type field-name:data-type
+#### Example: generate router-with-model blogPost fullName:String firstName:String lastName:String
 
 ### Generate a router with a model:
 #### Format: generate router-with-model model-name field-name:data-type field-name:data-type
@@ -56,5 +53,12 @@
 ### Generate a rest file with tests:
 #### Format: generate tests router-name/model-name field-name:data-type field-name:data-type
 #### Example: generate tests user id:Number firstName:String lastName:String
+
+### Generate a basic node.js/express server with env file.
+#### generate empty-server
+
+### Generate a empty node.js/express router
+#### generate empty-router
+
 
 ```
