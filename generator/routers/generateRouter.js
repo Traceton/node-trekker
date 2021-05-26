@@ -60,7 +60,7 @@ let findById = async (req, res, next) => {
             error: error
         });
   }
-  res.${routerName} = ${routerName};
+  res.${routerName} = ${routerName}[0];
   next();
 };
 
