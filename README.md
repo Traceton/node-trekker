@@ -85,5 +85,9 @@
  Short hand example: g e-r blogPost
  ```
 
+ ### Get current commands:
+ ```
+ help
+ ```
 
 
