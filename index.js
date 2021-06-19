@@ -8,12 +8,29 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-rl.question("node-treker command:  \n", (commandName) => {
-  let userInput = commandName.toLowerCase().trim().split(" ");
-  if (userInput[0] === "generate" || userInput[0] === "g") {
-    generatorController(userInput);
-  } else if (userInput[0] === "help" || userInput[0] === "h") {
-    help();
-  }
-  rl.close();
-});
+const recursiveReadline = () => {
+  rl.question("node-treker command: ", function (answer) {
+    let userInput = answer.toLowerCase().trim().split(" ");
+    console.log(userInput[0]);
+    switch (userInput[0]) {
+      case "exit":
+        rl.close();
+        break;
+      case "generate":
+        generatorController(userInput);
+        break;
+      case "g":
+        generatorController(userInput);
+        break;
+      case "help":
+        help();
+        break;
+      case "h":
+        help();
+        break;
+    }
+    recursiveReadline();
+  });
+};
+
+recursiveReadline();
