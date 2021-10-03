@@ -18,10 +18,12 @@ const generateModel = async (userInput) => {
     let entry = unSplitEntry.split(":");
     let entryName = entry[0];
     let entryType = entry[1].toUpperCase();
+    let upperCaseentryType =
+      entryType.charAt(0).toUpperCase() + entryType.slice(1);
 
     let modelField = {
       [entryName]: {
-        type: entryType,
+        type: upperCaseentryType,
         required: true,
       },
     };
