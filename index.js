@@ -9,7 +9,7 @@ const rl = readline.createInterface({
 });
 
 const recursiveReadline = () => {
-  rl.question("node-treker command: ", function (answer) {
+  rl.question("node-trekker command: ", function (answer) {
     let userInput = answer.toLowerCase().trim().split(" ");
     console.log(userInput[0]);
     switch (userInput[0]) {

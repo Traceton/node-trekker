@@ -1,8 +1,8 @@
-# :rocket: Node-Treker
+# :rocket: node-trekker
 
-### Node-Treker is a simple npm package for people using node.js, express, and mongoose to create a RESTFUL api.
+### node-trekker is a simple npm package for people using node.js, express, and mongoose to create a RESTFUL api.
 
-#### Node-treker can generate a working express server, with Create Read Update and Delete routes, a mongoose model, and a .rest file to test your routes. Or generate individual components as needed. 
+#### node-trekker can generate a working express server, with Create Read Update and Delete routes, a mongoose model, and a .rest file to test your routes. Or generate individual components as needed. 
 
 
 ## :one: Install and setup:
@@ -15,23 +15,23 @@
 ### :three: Next, install the packages below for best compatibility:
 
 ``` npm i dotenv express mongoose ```
-### :four: Next, install node-treker
+### :four: Next, install node-trekker
 
-``` npm i node-treker -D ```
+``` npm i node-trekker -D ```
 
-### :five: Next, navigate to your package.json file and copy the node-treker script given here:
+### :five: Next, navigate to your package.json file and copy the node-trekker script given here:
 
 ```
  "scripts": {
-    "node-trecker": "node node_modules/node-treker/index.js"
+    "node-trecker": "node node_modules/node-trekker/index.js"
   }
 ```
 
  ## :six: How To Use:
 
- Before running any commands you must start node-treker from the terminal inside of your apps directory:
+ Before running any commands you must start node-trekker from the terminal inside of your apps directory:
 
- ``` npm run node-treker ```
+ ``` npm run node-trekker ```
 
  ## :seven: :arrow_down: Current Available commands:
 

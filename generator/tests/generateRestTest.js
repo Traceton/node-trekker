@@ -22,7 +22,7 @@ const generateRestTest = async (userInput) => {
   });
 
   let restFile = `
-# generated rest file from node-treker
+# generated rest file from node-trekker
 #model name - ${modelName}
 
 # GET all of the instances of a certain model
