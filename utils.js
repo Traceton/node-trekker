@@ -1,23 +1,29 @@
 const fs = require("fs");
 
-const createDirectory = async (directoryPath) => {
-  await fs.mkdir(directoryPath, { recursive: false }, (error) => {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log(`${directoryPath} created`);
-    }
-  });
+const createDirectory = (directoryPath) => {
+  if (!directoryPath) {
+    console.log(`no directoryPath recieved`);
+    return `no directoryPath recieved`;
+  }
+
+  fs.mkdirSync(directoryPath, { recursive: true });
+  return `directory created`;
 };
 
-const createFile = async (filePath, fileContent) => {
-  await fs.writeFile(filePath, fileContent, (error) => {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log(`${filePath} created`);
-    }
-  });
+const createFile = (filePath, fileContent) => {
+  if (!filePath && !fileContent) {
+    console.log(`no filePath and no fileContent recieved`);
+    return `no filePath and no fileContent recieved`;
+  } else if (!fileContent) {
+    console.log(`no filePath OR no fileContent recieved`);
+    return `no filePath OR no fileContent recieved`;
+  }
+
+  fs.writeFileSync(
+    filePath,
+    fileContent
+  );
+  return `file created`;
 };
 
 module.exports = { createDirectory, createFile };
