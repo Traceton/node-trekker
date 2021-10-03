@@ -17,7 +17,7 @@ const generateModel = async (userInput) => {
   modelItems.map((unSplitEntry) => {
     let entry = unSplitEntry.split(":");
     let entryName = entry[0];
-    let entryType = entry[1].toUpperCase();
+    let entryType = entry[1];
     let upperCaseentryType =
       entryType.charAt(0).toUpperCase() + entryType.slice(1);
 
