@@ -1,4 +1,4 @@
-I just wanted to put a little guide in here to look back on when i need a little reminder of the exact goals of this project.
+I just wanted to put a guide in here to look back on when i need a little reminder of the exact goals of this project.
 
 I began building this mainly as a tool for when i am created a simple node js server, and want to speed up the process.
 
