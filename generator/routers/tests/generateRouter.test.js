@@ -1,18 +1,18 @@
-const { generateModel } = require("../generateModel");
+const { generateRouter } = require("../generateRouter");
 
 const fs = require("fs");
 
 jest.mock("fs");
 
-describe(`Test generating mongoose model with valid input`, () => {
+describe(`Test generating router with valid input`, () => {
     beforeAll(() => {
         fs.mkdirSync.mockClear();
         fs.writeFileSync.mockClear();
-        generateModel(["generate", "model", "car", "make:String", "model:String"]);
+        generateRouter(["generate", "router", "car", "make:String", "model:string"]);
     });
 
-    it(`"fs.mkdirSync" should be called with "models" `, () => {
-        expect(fs.mkdirSync).toHaveBeenNthCalledWith(1, `models`, {
+    it(`"fs.mkdirSync" should be called with "routes" `, () => {
+        expect(fs.mkdirSync).toHaveBeenNthCalledWith(1, `routes`, {
             recursive: true,
         });
     });
@@ -25,15 +25,15 @@ describe(`Test generating mongoose model with valid input`, () => {
         expect(fs.mkdirSync).toHaveLastReturnedWith(undefined);
     });
 
-    it(`"fs.writeFileSync" should be called with "models/Car.js, expect.any(String)" `, () => {
+    it(`"fs.writeFileSync" should be called with "routes/cars.js, expect.any(String)" `, () => {
         expect(fs.writeFileSync).toHaveBeenNthCalledWith(
             1,
-            `models/Car.js`,
+            `routes/cars.js`,
             expect.any(String)
         );
     });
 
-    it(` "fs.writeFileSync" to be called 1 time`, () => {
+    it(` "fs.writeFileSync" to be called 1 times`, () => {
         expect(fs.writeFileSync).toHaveBeenCalledTimes(1);
     });
 
@@ -42,12 +42,12 @@ describe(`Test generating mongoose model with valid input`, () => {
     });
 });
 
-describe(`Test generating mongoose model with undefined or null input`, () => {
+describe(`Test generating router with undefined or null input`, () => {
     beforeAll(() => {
         fs.mkdirSync.mockClear();
         fs.writeFileSync.mockClear();
-        generateModel(["generate", "model", undefined]);
-        generateModel(["generate", "model", null]);
+        generateRouter(["generate", "router", undefined]);
+        generateRouter(["generate", "router", null]);
     });
 
     it(` "fs.mkdirSync" to be called 0 times`, () => {

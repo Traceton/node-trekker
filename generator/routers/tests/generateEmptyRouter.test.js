@@ -1,18 +1,18 @@
-const { generateModel } = require("../generateModel");
+const { generateEmptyRouter } = require("../generateEmptyRouter");
 
 const fs = require("fs");
 
 jest.mock("fs");
 
-describe(`Test generating mongoose model with valid input`, () => {
+describe(`Test generating empty-router with valid input`, () => {
     beforeAll(() => {
         fs.mkdirSync.mockClear();
         fs.writeFileSync.mockClear();
-        generateModel(["generate", "model", "car", "make:String", "model:String"]);
+        generateEmptyRouter(["generate", "empty-router", "car"]);
     });
 
-    it(`"fs.mkdirSync" should be called with "models" `, () => {
-        expect(fs.mkdirSync).toHaveBeenNthCalledWith(1, `models`, {
+    it(`"fs.mkdirSync" should be called with "routes" `, () => {
+        expect(fs.mkdirSync).toHaveBeenNthCalledWith(1, `routes`, {
             recursive: true,
         });
     });
@@ -25,10 +25,10 @@ describe(`Test generating mongoose model with valid input`, () => {
         expect(fs.mkdirSync).toHaveLastReturnedWith(undefined);
     });
 
-    it(`"fs.writeFileSync" should be called with "models/Car.js, expect.any(String)" `, () => {
+    it(`"fs.writeFileSync" should be called with "routes/Cars.js, expect.any(String)" `, () => {
         expect(fs.writeFileSync).toHaveBeenNthCalledWith(
             1,
-            `models/Car.js`,
+            `routes/Cars.js`,
             expect.any(String)
         );
     });
@@ -42,12 +42,12 @@ describe(`Test generating mongoose model with valid input`, () => {
     });
 });
 
-describe(`Test generating mongoose model with undefined or null input`, () => {
+describe(`Test generating empty-router with undefined or null input`, () => {
     beforeAll(() => {
         fs.mkdirSync.mockClear();
         fs.writeFileSync.mockClear();
-        generateModel(["generate", "model", undefined]);
-        generateModel(["generate", "model", null]);
+        generateEmptyRouter(["generate", "empty-router", undefined]);
+        generateEmptyRouter(["generate", "empty-router", null]);
     });
 
     it(` "fs.mkdirSync" to be called 0 times`, () => {

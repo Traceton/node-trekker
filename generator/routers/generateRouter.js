@@ -2,12 +2,26 @@ const { createDirectory, createFile } = require("../../utils");
 const { existsSync } = require("fs");
 
 const generateRouter = async (userInput) => {
+
+  if (!userInput[2]) {
+    console.log("no router name recieved")
+    return
+  } else if (!userInput[3]) {
+    console.log("no model attributes recieved")
+    return
+  }
+
   // router name is also the model name.
   const routerName = userInput[2];
+
   let upperCaseModelName =
     routerName.charAt(0).toUpperCase() + routerName.slice(1);
 
   let ModelAttributes = userInput.slice(3);
+
+
+
+
 
   let finalAttributesForJSON = [];
   let preAttributesForPatchMethod = [];

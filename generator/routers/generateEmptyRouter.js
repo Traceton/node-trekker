@@ -4,6 +4,14 @@ const { existsSync } = require("fs");
 const generateEmptyRouter = async (userInput) => {
   const routerName = userInput[2];
 
+  if (!routerName) {
+    console.log("router name required")
+    return
+  }
+
+  let upperCaseFirstLetterRouterName =
+    routerName.charAt(0).toUpperCase() + routerName.slice(1);
+
   let emptyRouter = ` const express = require("express"); 
 const router = express(); \n
 
@@ -27,11 +35,11 @@ module.exports = router;
 
   if (existsSync(`routes`)) {
     console.log("/routes path exists");
-    await createFile(`routes/${routerName}s.js`, emptyRouter);
+    await createFile(`routes/${upperCaseFirstLetterRouterName}s.js`, emptyRouter);
   } else {
     console.log("/routes path does NOT exist");
     await createDirectory("routes");
-    await createFile(`routes/${routerName}s.js`, emptyRouter);
+    await createFile(`routes/${upperCaseFirstLetterRouterName}s.js`, emptyRouter);
   }
 };
 

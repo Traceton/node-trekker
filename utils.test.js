@@ -13,7 +13,7 @@ describe("Test if `fs` is called correctly in createFile", () => {
         createFile("testRoute.wozers", "// test content");
     });
 
-    it(`"fs.writeFileSync" should be called with "" `, () => {
+    it(`"fs.writeFileSync" should be called with "testRoute.wozers","// test content" `, () => {
         expect(fs.writeFileSync).toHaveBeenLastCalledWith(
             "testRoute.wozers",
             "// test content"
@@ -55,10 +55,7 @@ describe("test if `fs` is called correctly in createDirectory", () => {
         createDirectory("testDirectory");
     });
 
-    it(`"fs.mkdirSync" should be called with
-   "testDirectory",
-  { recursive: true },
-  expect.any(Function)" `, () => {
+    it(`"fs.mkdirSync" should be called with "testDirectory" `, () => {
         expect(fs.mkdirSync).toHaveBeenLastCalledWith("testDirectory", {
             recursive: true,
         });
