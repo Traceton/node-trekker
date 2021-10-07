@@ -1,6 +1,7 @@
 const { generateModel } = require("./models/generateModel");
 const { generateRouter } = require("./routers/generateRouter");
 const { generateRestTest } = require("./tests/generateRestTest");
+const { generateJestTests } = require("./tests/generateJestTests");
 const { generateEmptyServer } = require("./serverFiles/generateEmptyServer");
 const { generateEmptyRouter } = require("./routers/generateEmptyRouter");
 const {
@@ -17,6 +18,8 @@ const generatorController = (userInput) => {
     generateRouter(userInput);
   } else if (userInput[1] === "tests" || userInput[1] === "t") {
     generateRestTest(userInput);
+  } else if (userInput[1] === "jest" || userInput[1] === "j") {
+    generateJestTests(userInput);
   } else if (userInput[1] === "empty-server" || userInput[1] === "e-s") {
     generateEmptyServer(userInput);
   } else if (userInput[1] === "empty-router" || userInput[1] === "e-r") {
