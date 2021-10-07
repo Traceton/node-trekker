@@ -4,6 +4,11 @@ const { existsSync } = require("fs");
 // commands- generate tests user id:String name:String
 
 const generateRestTest = async (userInput) => {
+  if (!userInput[2] || !userInput[3]) {
+    console.log("no model name or model attributes recieved")
+    return
+  }
+
   const modelName = userInput[2];
 
   let ModelAttributes = userInput.slice(3);
