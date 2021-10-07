@@ -2,7 +2,19 @@ const { createDirectory, createFile } = require("../../utils");
 const { existsSync } = require("fs");
 
 const generateModel = async (userInput) => {
+
+  if (!userInput[2]) {
+    console.log("model name cant be null")
+    return
+  } else if (!userInput[3]) {
+    console.log("model attributes cant be null")
+    return
+  }
+
   let modelName = userInput[2];
+
+  let upperCaseFirstLetterModelName =
+    modelName.charAt(0).toUpperCase() + modelName.slice(1);
 
   let modelItems = userInput.slice(3);
 
@@ -59,10 +71,10 @@ const generateModel = async (userInput) => {
   if (!existsSync(`models`)) {
     // console.log("/models path does NOT exist");
     await createDirectory("models");
-    await createFile(`models/${modelName}.js`, newModel);
+    await createFile(`models/${upperCaseFirstLetterModelName}.js`, newModel);
   } else {
     // console.log("/models path exists");
-    await createFile(`models/${modelName}.js`, newModel);
+    await createFile(`models/${upperCaseFirstLetterModelName}.js`, newModel);
   }
 };
 
