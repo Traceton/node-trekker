@@ -19,7 +19,8 @@ const generatorController = (userInput) => {
   } else if (userInput[1] === "tests" || userInput[1] === "t") {
     generateRestTest(userInput);
   } else if (userInput[1] === "jest" || userInput[1] === "j") {
-    generateJestTests(userInput);
+    // generateJestTests(userInput);
+    console.log("Still in development")
   } else if (userInput[1] === "empty-server" || userInput[1] === "e-s") {
     generateEmptyServer(userInput);
   } else if (userInput[1] === "empty-router" || userInput[1] === "e-r") {
