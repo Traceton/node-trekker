@@ -19,19 +19,9 @@ const generateRouter = async (userInput) => {
 
   let ModelAttributes = userInput.slice(3);
 
-
-
-
-
   let finalAttributesForJSON = [];
   let preAttributesForPatchMethod = [];
 
-  let idForJSON = `${routerName}_id : req.body.${routerName}_id`;
-  let idForPatch = `if (req.body.${routerName}_id != null) { 
-    res.${routerName}.${routerName}_id = req.body.${routerName}_id;
-  }`;
-  preAttributesForPatchMethod.push(idForPatch);
-  finalAttributesForJSON.push(idForJSON);
   ModelAttributes.map((item) => {
     let modelAttribute = item.split(":");
     let attributeName = modelAttribute[0];
@@ -59,9 +49,9 @@ const ${upperCaseModelName} = require("../models/${routerName}"); \n
 let findById = async (req, res, next) => {
   let ${routerName};
   try {
-    ${routerName} = await ${upperCaseModelName}.find({ ${routerName}_id: req.params.id });
+    ${routerName} = await ${upperCaseModelName}.findById(req.params.id);
 
-    if (!${routerName}[0]) {
+    if (!${routerName}) {
       res.status(404).json({
         message_type: "warning",
         message: "could not find a ${routerName}",
@@ -75,7 +65,7 @@ let findById = async (req, res, next) => {
             error: error
         });
   }
-  res.${routerName} = ${routerName}[0];
+  res.${routerName} = ${routerName};
   next();
 };
 
@@ -190,9 +180,7 @@ router.patch(
 // DELETE a single instance of a certain model
 router.delete("/:id", async (req, res) => {
   try {
-    let deleted = await ${upperCaseModelName}.findOneAndDelete({
-      ${routerName}_id: req.params.id,
-    });
+    let deleted = await ${upperCaseModelName}.findOneAndDelete(req.params.id);
     if (deleted) {
       res.status(201).json({
         message_type: "success",
@@ -218,12 +206,10 @@ module.exports = router;
   `;
 
   if (existsSync(`routes`)) {
-    // console.log("/routes path exists");
-    await createFile(`routes/${routerName}s.js`, router);
+    createFile(`routes/${routerName}s.js`, router);
   } else {
-    // console.log("/routes path does NOT exist");
-    await createDirectory("routes");
-    await createFile(`routes/${routerName}s.js`, router);
+    createDirectory("routes");
+    createFile(`routes/${routerName}s.js`, router);
   }
 };
 
