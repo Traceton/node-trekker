@@ -39,7 +39,7 @@ Content-type: application/json
 
 
 # GET a single instance of a certain model by id
-GET http://localhost:3001/${modelName}s/1
+GET http://localhost:3001/${modelName}s/newIdGoesHere
 Content-type: application/json
 
 
@@ -61,7 +61,7 @@ Content-type: application/json \n
 
 
 # PATCH a single instance of a certain model
-PATCH http://localhost:3001/${modelName}s/1
+PATCH http://localhost:3001/${modelName}s/newIdGoesHere
 Content-type: application/json \n
 {
   ${finalAttributesForJSON}
@@ -74,7 +74,7 @@ Content-type: application/json \n
 
 
 # DELETE a single instance of a certain model
-DELETE http://localhost:3001/${modelName}s/1
+DELETE http://localhost:3001/${modelName}s/newIdGoesHere
 Content-type: application/json
 
 `;
