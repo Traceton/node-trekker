@@ -31,7 +31,7 @@ const generateRouter = async (userInput) => {
     let attributeName = modelAttribute[0];
     let attributeType = modelAttribute[1];
     // New here
-    if (attributeType === "file" || attributeType === "image") {
+    if (attributeType == "File" || attributeType == "Image") {
       hasFile = true
       hasFileUploadString = `upload.single("${attributeName}"),`
       return
@@ -39,7 +39,6 @@ const generateRouter = async (userInput) => {
       if (fileIdentifier.length <= 0) {
         fileIdentifier = attributeName;
       }
-
       let AttributesForJSON = `${attributeName} : req.body.${attributeName}`;
       let attributesForPatchMethod = `if (req.body.${attributeName} != null) { 
       res.${routerName}.${attributeName} = req.body.${attributeName};
