@@ -34,16 +34,18 @@ const generateRouter = async (userInput) => {
       hasFile = true
       return
     }
-    if (attributeType != "file" || attributeType != "image" && fileIdentifier.length <= 0) {
-      fileIdentifier = attributeName;
-    }
+    if (attributeType != "file" || attributeType != "image") {
+      if (fileIdentifier.length <= 0) {
+        fileIdentifier = attributeName;
+      }
 
-    let AttributesForJSON = `${attributeName} : req.body.${attributeName}`;
-    let attributesForPatchMethod = `if (req.body.${attributeName} != null) { 
+      let AttributesForJSON = `${attributeName} : req.body.${attributeName}`;
+      let attributesForPatchMethod = `if (req.body.${attributeName} != null) { 
       res.${routerName}.${attributeName} = req.body.${attributeName};
     }`;
-    finalAttributesForJSON.push(AttributesForJSON);
-    preAttributesForPatchMethod.push(attributesForPatchMethod);
+      finalAttributesForJSON.push(AttributesForJSON);
+      preAttributesForPatchMethod.push(attributesForPatchMethod);
+    }
   });
 
   let finalAttributesForPatchMethod = preAttributesForPatchMethod
