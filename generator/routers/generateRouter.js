@@ -5,6 +5,7 @@ const generateRouter = async (userInput) => {
   // new here
   let hasFile = false
   let fileIdentifier;
+  let hasFileUploadString = `upload.single("file"),`
 
   if (!userInput[2]) {
     console.log("no router name recieved")
@@ -32,6 +33,7 @@ const generateRouter = async (userInput) => {
     // New here
     if (attributeType === "file" || attributeType === "image") {
       hasFile = true
+      hasFileUploadString = `upload.single("${attributeName}"),`
       return
     }
     if (attributeType != "file" || attributeType != "image") {
@@ -109,7 +111,7 @@ const upload = multer({
 });
   `
 
-  let hasFileUploadString = `upload.single("file"),`
+
 
   let router = ` const express = require("express"); 
 const router = express(); \n
