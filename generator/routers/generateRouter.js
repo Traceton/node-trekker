@@ -108,7 +108,7 @@ const upload = multer({
 });
   `
 
-  let hasFileUploadString = `upload.single("file")`
+  let hasFileUploadString = `upload.single("file"),`
 
   let router = ` const express = require("express"); 
 const router = express(); \n
