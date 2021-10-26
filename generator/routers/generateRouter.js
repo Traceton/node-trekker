@@ -2,6 +2,9 @@ const { createDirectory, createFile } = require("../../utils");
 const { existsSync } = require("fs");
 
 const generateRouter = async (userInput) => {
+  // new here
+  let hasFile = false
+  let fileIdentifier;
 
   if (!userInput[2]) {
     console.log("no router name recieved")
@@ -26,6 +29,15 @@ const generateRouter = async (userInput) => {
     let modelAttribute = item.split(":");
     let attributeName = modelAttribute[0];
     let attributeType = modelAttribute[1];
+    // New here
+    if (attributeType === "File" || attributeType === "Image") {
+      hasFile = true
+      return
+    }
+    if (attributeType != "File" || attributeType != "Image" && fileIdentifier.length <= 0) {
+      fileIdentifier = attributeName;
+    }
+
     let AttributesForJSON = `${attributeName} : req.body.${attributeName}`;
     let attributesForPatchMethod = `if (req.body.${attributeName} != null) { 
       res.${routerName}.${attributeName} = req.body.${attributeName};
@@ -40,10 +52,69 @@ const generateRouter = async (userInput) => {
     .replace("]", "")
     .replace(/,/g, "");
 
+  let hasFileContent = `
+  const mongoose = require("mongoose");
+  const multer = require("multer");
+  const { GridFsStorage } = require("multer-gridfs-storage");
+  const fileSizeLimit = 10000000;
+
+  // database
+const mongoURI = process.env.DATABASE_URL;
+// connection
+const conn = mongoose.createConnection(mongoURI, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+});
+
+// init gfs
+let gfs;
+
+conn.on("error", (error) => {
+  console.error(error);
+});
+conn.once("open", () => {
+  console.log("posts router connection connected");
+  gfs = new mongoose.mongo.GridFSBucket(conn.db, {
+    bucketName: "${routerName}Files",
+  });
+});
+
+
+// create storage engine
+const storage = new GridFsStorage({
+  url: mongoURI,
+  file: (req, file) => {
+    return new Promise(async (resolve, reject) => {
+      // important that you append the file last in the front end, or this might not work.
+      /* depending on your images,you might want to change,
+      the identifier to something more unique.
+      since this will be how you search for your file */
+      let fileIdentifier = await req.body.${fileIdentifier}.toString().replace(/\s+/g, '');
+      const filename = \`\${fileIdentifier}_file\`
+      const fileInfo = {
+        filename: filename,
+        bucketName: "${routerName}Files",
+      };
+      resolve(fileInfo);
+    });
+  },
+  options: {
+    useUnifiedTopology: true,
+  },
+});
+const upload = multer({
+  storage,
+  limits: { fileSize: fileSizeLimit },
+});
+  `
+
+  let hasFileUploadString = `upload.single("file")`
+
   let router = ` const express = require("express"); 
 const router = express(); \n
-
 const ${upperCaseModelName} = require("../models/${routerName}"); \n
+
+${hasFile ? hasFileContent : ''}
 
 // middleware for finding ${routerName} by id
 let findById = async (req, res, next) => {
@@ -115,7 +186,7 @@ router.get("/:id",findById, async (req, res) => { \n
 
 
 // POST a single new instance of a certain model
-router.post("/", async (req, res) => {
+router.post("/",${hasFile ? hasFileUploadString : ''} async (req, res) => {
   const ${routerName} = await new ${upperCaseModelName}({
     ${finalAttributesForJSON}
   })
