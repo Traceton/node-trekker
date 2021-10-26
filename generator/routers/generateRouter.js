@@ -32,6 +32,7 @@ const generateRouter = async (userInput) => {
     // New here
     if (attributeType === "File" || attributeType === "Image") {
       hasFile = true
+      console.log("found image or file")
       return
     }
     if (attributeType != "File" || attributeType != "Image" && fileIdentifier.length <= 0) {
