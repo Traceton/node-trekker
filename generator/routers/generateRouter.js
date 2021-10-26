@@ -73,7 +73,6 @@ conn.on("error", (error) => {
   console.error(error);
 });
 conn.once("open", () => {
-  console.log("posts router connection connected");
   gfs = new mongoose.mongo.GridFSBucket(conn.db, {
     bucketName: "${routerName}Files",
   });
