@@ -4,7 +4,7 @@ const { existsSync } = require("fs");
 const generateRouter = async (userInput) => {
   // new here
   let hasFile = false
-  let fileIdentifier;
+  let fileIdentifier = "";
   let hasFileUploadString = `upload.single("file"),`
 
   if (!userInput[2]) {
@@ -35,8 +35,7 @@ const generateRouter = async (userInput) => {
       hasFile = true
       hasFileUploadString = `upload.single("${attributeName}"),`
       return
-    }
-    if (attributeType != "file" || attributeType != "image") {
+    } else {
       if (fileIdentifier.length <= 0) {
         fileIdentifier = attributeName;
       }
