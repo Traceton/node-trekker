@@ -29,14 +29,12 @@ const generateRouter = async (userInput) => {
     let modelAttribute = item.split(":");
     let attributeName = modelAttribute[0];
     let attributeType = modelAttribute[1];
-    console.log(attributeType)
     // New here
-    if (attributeType === "File" || attributeType === "Image") {
+    if (attributeType === "file" || attributeType === "image") {
       hasFile = true
-      console.log("found image or file")
       return
     }
-    if (attributeType != "File" || attributeType != "Image" && fileIdentifier.length <= 0) {
+    if (attributeType != "file" || attributeType != "image" && fileIdentifier.length <= 0) {
       fileIdentifier = attributeName;
     }
 
