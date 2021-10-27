@@ -34,6 +34,12 @@
  ``` npm run node-trekker ```
 
  ## :seven: :arrow_down: Current Available commands:
+ 
+ ### Currently available data-types :String :File :Image
+ ### If :File or :Image is going to be used used, Follow the below install instructions, as they will be required for use.
+ #### :heavy_exclamation_mark: Also, if :File or :Image is being used. multipart/form data must be sent from the client side :heavy_exclamation_mark:
+ 
+ ```npm install multer multer-gridfs-storage ```
 
  ### Generate a server.js, a router, model, and .rest test file:
  ##### Don't forget to set a DATABASE_URL value in the .env file that is generated.
