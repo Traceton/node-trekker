@@ -18,6 +18,7 @@ const generateRestTest = async (userInput) => {
   ModelAttributes.map((item) => {
     let modelAttribute = item.split(":");
     let attributeName = modelAttribute[0];
+    let attributeType = modelAttribute[1];
     if (attributeType == "File" || attributeType == "Image") {
       return
     } else {
