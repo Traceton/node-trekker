@@ -37,7 +37,7 @@ const generateEmptyServer = async (userInput) => {
       console.log(\`running at http://localhost:\${process.env.PORT}\`);
     });`;
   let envFile = `DATABASE_URL=
-PORT=3001`;
+  PORT=3001`;
   if (!existsSync(".env")) {
     createFile(`.env`, envFile);
   } else {
