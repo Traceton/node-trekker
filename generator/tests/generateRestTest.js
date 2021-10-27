@@ -11,6 +11,8 @@ const generateRestTest = async (userInput) => {
 
   const modelName = userInput[2];
 
+  let fileIdentifier;
+
   let ModelAttributes = userInput.slice(3);
 
   let finalAttributesForJSON = [];
@@ -22,6 +24,9 @@ const generateRestTest = async (userInput) => {
     if (attributeType == "File" || attributeType == "Image") {
       return
     } else {
+      if (fileIdentifier.length <= 0) {
+        fileIdentifier = attributeName;
+      }
       let AttributesForJSON = `\n \t${JSON.stringify(
         attributeName
       )}: "Test value" `;
@@ -71,6 +76,23 @@ Content-type: application/json \n
   ${finalAttributesForJSON}
 }
 
+
+
+###
+
+
+
+GET http://localhost:3001/${modelName}s/${modelName}${fileIdentifier}ByFilename/:filename goes here
+Content-type: application/json
+
+
+
+###
+
+
+
+GET http://localhost:3001/${modelName}s/${modelName}${fileIdentifier}/all${fileIdentifier}s
+Content-type: application/json
 
 
 ###
