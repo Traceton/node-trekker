@@ -2,6 +2,9 @@ let helpMessage = `
 ********************
 Available commands:
 
+Current available data-types, :File :Image :String
+if using :File or :Image, the client side must send multipart/form data to the upload route.
+
 Generate a server.js, a router, model, and .rest test file:
 Don't forget to set a DATABASE_URL value in the .env file that is generated.
 Format: generate server-router-model model-name field-name:data-type field-name:data-type
