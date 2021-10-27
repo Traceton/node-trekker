@@ -11,7 +11,7 @@ const generateRestTest = async (userInput) => {
 
   const modelName = userInput[2];
 
-  let fileIdentifier = "";
+  let attributeNameForFile = "";
 
   let ModelAttributes = userInput.slice(3);
 
@@ -22,8 +22,8 @@ const generateRestTest = async (userInput) => {
     let attributeName = modelAttribute[0];
     let attributeType = modelAttribute[1];
     if (attributeType == "File" || attributeType == "Image") {
-      if (fileIdentifier.length <= 0) {
-        fileIdentifier = attributeName;
+      if (attributeNameForFile.length <= 0) {
+        attributeNameForFile = attributeName;
       }
       return
     } else {
@@ -81,8 +81,9 @@ Content-type: application/json \n
 ###
 
 
-// incorrect!
-GET http://localhost:3001/${modelName}s/${modelName}${fileIdentifier}ByFilename/:filename goes here
+
+// /postbackgroundImageByFilename/:filename
+GET http://localhost:3001/${modelName}s/${modelName}${attributeNameForFile}ByFilename/:filename 
 Content-type: application/json
 
 
@@ -90,8 +91,9 @@ Content-type: application/json
 ###
 
 
-// incorrect!
-GET http://localhost:3001/${modelName}s/${modelName}${fileIdentifier}/all${fileIdentifier}s
+
+// /postbackgroundImage/allbackgroundImages
+GET http://localhost:3001/${modelName}s/${modelName}${attributeNameForFile}/all${attributeNameForFile}s
 Content-type: application/json
 
 
