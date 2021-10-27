@@ -22,11 +22,11 @@ const generateRestTest = async (userInput) => {
     let attributeName = modelAttribute[0];
     let attributeType = modelAttribute[1];
     if (attributeType == "File" || attributeType == "Image") {
-      return
-    } else {
       if (fileIdentifier.length <= 0) {
         fileIdentifier = attributeName;
       }
+      return
+    } else {
       let AttributesForJSON = `\n \t${JSON.stringify(
         attributeName
       )}: "Test value" `;
@@ -81,7 +81,7 @@ Content-type: application/json \n
 ###
 
 
-
+// incorrect!
 GET http://localhost:3001/${modelName}s/${modelName}${fileIdentifier}ByFilename/:filename goes here
 Content-type: application/json
 
@@ -90,7 +90,7 @@ Content-type: application/json
 ###
 
 
-
+// incorrect!
 GET http://localhost:3001/${modelName}s/${modelName}${fileIdentifier}/all${fileIdentifier}s
 Content-type: application/json
 
