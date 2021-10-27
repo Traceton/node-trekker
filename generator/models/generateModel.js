@@ -69,11 +69,11 @@ const generateModel = async (userInput) => {
   module.exports = mongoose.model("${modelName}", ${modelName}Schema);`;
   if (!existsSync(`models`)) {
     // console.log("/models path does NOT exist");
-    await createDirectory("models");
-    await createFile(`models/${upperCaseFirstLetterModelName}.js`, newModel);
+    createDirectory("models");
+    createFile(`models/${upperCaseFirstLetterModelName}.js`, newModel);
   } else {
     // console.log("/models path exists");
-    await createFile(`models/${upperCaseFirstLetterModelName}.js`, newModel);
+    createFile(`models/${upperCaseFirstLetterModelName}.js`, newModel);
   }
 };
 

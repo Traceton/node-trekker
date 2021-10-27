@@ -11,7 +11,7 @@ const generateRestTest = async (userInput) => {
 
   const modelName = userInput[2];
 
-  let fileIdentifier;
+  let fileIdentifier = "";
 
   let ModelAttributes = userInput.slice(3);
 
@@ -107,11 +107,11 @@ Content-type: application/json
 
   if (!existsSync(`tests`)) {
     // console.log("/tests path does NOT exist");
-    await createDirectory("tests");
-    await createFile(`tests/${modelName}.rest`, restFile);
+    createDirectory("tests");
+    createFile(`tests/${modelName}.rest`, restFile);
   } else {
     // console.log("/tests path exists");
-    await createFile(`tests/${modelName}.rest`, restFile);
+    createFile(`tests/${modelName}.rest`, restFile);
   }
 };
 module.exports = { generateRestTest };

@@ -35,11 +35,11 @@ module.exports = router;
 
   if (existsSync(`routes`)) {
     console.log("/routes path exists");
-    await createFile(`routes/${upperCaseFirstLetterRouterName}s.js`, emptyRouter);
+     createFile(`routes/${upperCaseFirstLetterRouterName}s.js`, emptyRouter);
   } else {
     console.log("/routes path does NOT exist");
-    await createDirectory("routes");
-    await createFile(`routes/${upperCaseFirstLetterRouterName}s.js`, emptyRouter);
+     createDirectory("routes");
+     createFile(`routes/${upperCaseFirstLetterRouterName}s.js`, emptyRouter);
   }
 };
 
