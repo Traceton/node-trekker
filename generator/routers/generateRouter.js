@@ -5,6 +5,7 @@ const generateRouter = async (userInput) => {
   // new here
   let hasFile = false
   let fileIdentifier = "";
+  let FileAttribute;
   let hasFileUploadString = `upload.single("file"),`
 
   if (!userInput[2]) {
@@ -34,6 +35,7 @@ const generateRouter = async (userInput) => {
     if (attributeType == "File" || attributeType == "Image") {
       hasFile = true
       hasFileUploadString = `upload.single("${attributeName}"),`
+      FileAttribute = attributeName
       return
     } else {
       if (fileIdentifier.length <= 0) {
@@ -248,6 +250,61 @@ router.patch(
     }
   }
 );
+
+router.get("/${routerName}${FileAttribute}/all${FileAttribute}s", async (req, res) => {
+  await gfs.find().toArray((err, files) => {
+    if (err) {
+      res.status(500).json({
+        message_type: "error",
+        message: "Internal server error",
+        error: err
+      });
+    }
+    // check if files exist
+    if (!files || files.length === 0) {
+      return res.status(404).json({
+        message_type: "warning",
+        message: "could not find any ${FileAttribute}s",
+      });
+    }
+    // files were found
+    return res.status(201).json({
+      message_type: "success",
+      message: "good response",
+      ${FileAttribute}: files
+    });
+  });
+});
+
+router.get("/${routerName}${FileAttribute}ByFilename/:filename", (req, res) => {
+  gfs.find({ filename: req.params.filename.toString().replace(/\s+/g, '') }).toArray((err, files) => {
+    if (err) {
+      res.status(500).json({
+        message_type: "error",
+        message: "Internal server error",
+        error: err
+      });
+    }
+    // check if files exist
+    if (!files || files.length === 0) {
+      return res.status(404).json({
+        message_type: "warning",
+        message: "could not find a ${FileAttribute}",
+      });
+    }
+    // files were found
+    let gotData = false;
+    files.map(async (file) => {
+      let downloadStream = await gfs
+        .openDownloadStreamByName(file.filename)
+        .pipe(res);
+      downloadStream.on("end", () => {
+        test.ok(gotData);
+        console.log("stream ended.");
+      });
+    });
+  });
+});
 
 // DELETE a single instance of a certain model
 router.delete("/:id", async (req, res) => {

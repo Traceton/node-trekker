@@ -18,11 +18,14 @@ const generateRestTest = async (userInput) => {
   ModelAttributes.map((item) => {
     let modelAttribute = item.split(":");
     let attributeName = modelAttribute[0];
-
-    let AttributesForJSON = `\n \t${JSON.stringify(
-      attributeName
-    )}: "Test value" `;
-    finalAttributesForJSON.push(AttributesForJSON);
+    if (attributeType == "File" || attributeType == "Image") {
+      return
+    } else {
+      let AttributesForJSON = `\n \t${JSON.stringify(
+        attributeName
+      )}: "Test value" `;
+      finalAttributesForJSON.push(AttributesForJSON);
+    }
   });
 
   let restFile = `

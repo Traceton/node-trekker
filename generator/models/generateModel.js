@@ -25,20 +25,24 @@ const generateModel = async (userInput) => {
     let entry = unSplitEntry.split(":");
     let entryName = entry[0];
     let entryType = entry[1];
-    let upperCaseentryType =
-      entryType.charAt(0).toUpperCase() + entryType.slice(1);
+    if (entryType == "File" || entryType == "Image") {
+      return
+    } else {
+      let upperCaseentryType =
+        entryType.charAt(0).toUpperCase() + entryType.slice(1);
 
-    let modelField = {
-      [entryName]: {
-        type: upperCaseentryType,
-        required: true,
-      },
-    };
+      let modelField = {
+        [entryName]: {
+          type: upperCaseentryType,
+          required: true,
+        },
+      };
 
-    let stringField = JSON.stringify(modelField)
-      .replace("{", "")
-      .replace("}", "");
-    neWModelSchemaItems.push(stringField);
+      let stringField = JSON.stringify(modelField)
+        .replace("{", "")
+        .replace("}", "");
+      neWModelSchemaItems.push(stringField);
+    }
   });
 
   let createdOnField = `createdOn: {
