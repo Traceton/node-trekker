@@ -2,7 +2,6 @@ const { createDirectory, createFile } = require("../../utils");
 const { existsSync } = require("fs");
 
 const generateRouter = async (userInput) => {
-  // new here
   let hasFile = false
   let fileIdentifier = "";
   let FileAttribute;
@@ -31,7 +30,7 @@ const generateRouter = async (userInput) => {
     let modelAttribute = item.split(":");
     let attributeName = modelAttribute[0];
     let attributeType = modelAttribute[1];
-    // New here
+
     if (attributeType == "File" || attributeType == "Image") {
       hasFile = true
       hasFileUploadString = `upload.single("${attributeName}"),`
