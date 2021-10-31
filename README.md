@@ -38,6 +38,7 @@
  ### Currently available data-types :String :File :Image
  ### If :File or :Image is going to be used used, Follow the below install instructions, as they will be required for use.
  #### :heavy_exclamation_mark: Also, if :File or :Image is being used. multipart/form data must be sent from the client side :heavy_exclamation_mark:
+ #### :heavy_exclamation_mark: File or image delete routes not generated. Coming soon. :heavy_exclamation_mark: 
  
  ```npm install multer multer-gridfs-storage ```
 
