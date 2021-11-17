@@ -251,7 +251,7 @@ router.patch(
 );
 
 router.get("/${routerName}${FileAttribute}/all${FileAttribute}s", async (req, res) => {
-  await gfs.find().toArray((err, files) => {
+  await gfs.find().toArray((err, ${FileAttribute}s) => {
     if (err) {
       res.status(500).json({
         message_type: "error",
@@ -259,24 +259,24 @@ router.get("/${routerName}${FileAttribute}/all${FileAttribute}s", async (req, re
         error: err
       });
     }
-    // check if files exist
-    if (!files || files.length === 0) {
+    // check if ${FileAttribute}s exist
+    if (!${FileAttribute}s || ${FileAttribute}s.length === 0) {
       return res.status(404).json({
         message_type: "warning",
         message: "could not find any ${FileAttribute}s",
       });
     }
-    // files were found
+    // ${FileAttribute}s were found
     return res.status(201).json({
       message_type: "success",
       message: "good response",
-      ${FileAttribute}: files
+      ${FileAttribute}: ${FileAttribute}s
     });
   });
 });
 
 router.get("/${routerName}${FileAttribute}ByFilename/:filename", (req, res) => {
-  gfs.find({ filename: req.params.filename.toString().replace(/\s+/g, '') }).toArray((err, files) => {
+  gfs.find({ filename: req.params.filename.toString().replace(/\s+/g, '') }).toArray((err, ${FileAttribute}s) => {
     if (err) {
       res.status(500).json({
         message_type: "error",
@@ -284,16 +284,16 @@ router.get("/${routerName}${FileAttribute}ByFilename/:filename", (req, res) => {
         error: err
       });
     }
-    // check if files exist
-    if (!files || files.length === 0) {
+    // check if ${FileAttribute}s exist
+    if (!${FileAttribute}s || ${FileAttribute}s.length === 0) {
       return res.status(404).json({
         message_type: "warning",
         message: "could not find a ${FileAttribute}",
       });
     }
-    // files were found
+    // ${FileAttribute}s were found
     let gotData = false;
-    files.map(async (file) => {
+    ${FileAttribute}s.map(async (file) => {
       let downloadStream = await gfs
         .openDownloadStreamByName(file.filename)
         .pipe(res);
@@ -304,6 +304,42 @@ router.get("/${routerName}${FileAttribute}ByFilename/:filename", (req, res) => {
     });
   });
 });
+
+// delete a image by id
+router.delete("/delete${routerName}${FileAttribute}ByFilename/:filename", async (req, res) => {
+  await gfs.find().toArray((err, ${FileAttribute}s) => {
+    if (err) {
+      res.status(500).json({
+        message_type: "error",
+        message: "Internal server error",
+        error: err
+      });
+    }
+    // check if ${FileAttribute}s exist
+    if (!${FileAttribute}s || ${FileAttribute}s.length === 0) {
+      return res.status(404).json({
+        message_type: "warning",
+        message: "could not find any backgroundImages",
+      });
+    }
+    ${FileAttribute}s.map((${FileAttribute}) => {
+      if (${FileAttribute}.filename == req.params.filename) {
+        gfs.delete(${FileAttribute}._id);
+        res.status(201).json({
+          message_type: "success",
+          message: "${FileAttribute} deleted"
+        });
+      } else {
+        res.status(404).json({
+          message_type: "warning",
+          message: "${FileAttribute} could not be deleted",
+        });
+      }
+    })
+  });
+});
+
+// new above
 
 // DELETE a single instance of a certain model
 router.delete("/:id", async (req, res) => {
