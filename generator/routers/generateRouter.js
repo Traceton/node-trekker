@@ -131,7 +131,7 @@ router.get("/${routerName}${FileAttribute}/all${FileAttribute}s", async (req, re
     return res.status(201).json({
       message_type: "success",
       message: "good response",
-      ${FileAttribute}: ${FileAttribute}s
+      ${FileAttribute}s: ${FileAttribute}s
     });
   });
 });
@@ -154,9 +154,9 @@ router.get("/${routerName}${FileAttribute}ByFilename/:filename", (req, res) => {
     }
     // ${FileAttribute}s were found
     let gotData = false;
-    ${FileAttribute}s.map(async (file) => {
+    ${FileAttribute}s.map(async (${FileAttribute}) => {
       let downloadStream = await gfs
-        .openDownloadStreamByName(file.filename)
+        .openDownloadStreamByName(${FileAttribute}.filename)
         .pipe(res);
       downloadStream.on("end", () => {
         test.ok(gotData);
