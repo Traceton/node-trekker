@@ -22,7 +22,7 @@
 
 ```
  "scripts": {
-    "node-trecker": "node node_modules/node-trekker/index.js"
+    "node-trekker": "node node_modules/node-trekker/index.js"
   }
 ```
 
