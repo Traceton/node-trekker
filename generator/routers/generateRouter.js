@@ -92,7 +92,7 @@ const storage = new GridFsStorage({
       the identifier to something more unique.
       since this will be how you search for your file */
       let fileIdentifier = await req.body.${fileIdentifier}.toString().replace(/\s+/g, '');
-      const filename = \`\${fileIdentifier}_file\`
+      const filename = \`\${fileIdentifier}_file\`.toString().replace(/s+/g, '')
       const fileInfo = {
         filename: filename,
         bucketName: "${routerName}Files",
