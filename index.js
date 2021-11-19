@@ -8,10 +8,12 @@ const rl = readline.createInterface({
 });
 
 const recursiveReadline = () => {
+  let didExit = false
   rl.question("node-trekker command: ", function (answer) {
     let userInput = answer.trim().split(" ");
     switch (userInput[0]) {
       case "exit":
+        didExit = true
         rl.close();
         break;
       case "generate":
@@ -23,7 +25,9 @@ const recursiveReadline = () => {
         help();
         break;
     }
-    recursiveReadline();
+    if (didExit == false) {
+      recursiveReadline();
+    }
   });
 };
 

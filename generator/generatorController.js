@@ -27,7 +27,7 @@ const generatorController = (userInput) => {
     generateEmptyRouter(userInput);
   } else if (userInput[1] === "router-with-model" || userInput[1] === "rwm") {
     generateRouterWithModel(userInput);
-  } else if (userInput[1] === "server-router-model" || userInput[1] === "srm") {
+  } else if (userInput[1] === "crud") {
     generateServerRouterModel(userInput);
   } else {
     console.log("Sorry that command was not found");

@@ -45,9 +45,8 @@
  ### Generate a server.js, a router, model, and .rest test file:
  ##### Don't forget to set a DATABASE_URL value in the .env file that is generated.
  ```
- Format: generate server-router-model model-name field-name:data-type field-name:data-type
- Example: generate server-router-model blogPost mainTitle:String description:String 
- Short hand example: g srm blogPost mainTitle:String description:String 
+ Format: generate crud model-name field-name:data-type field-name:data-type
+ Example: generate crud blogPost mainTitle:String description:String 
  ```
 
  ### Generate a router with a model:
