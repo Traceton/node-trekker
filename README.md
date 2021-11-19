@@ -63,14 +63,14 @@
 
  ### Generate a router:
  ```
- Format: generate router router-name/model-name field-name:data-type field-name:data-type
+ Format: generate router router-name field-name:data-type field-name:data-type
  Example: generate router blogPost mainTitle:String description:String 
  Short hand example: g r blogPost mainTitle:String description:String 
  ```
 
  ### Generate a rest file with tests:
  ``` 
- Format: generate tests router-name/model-name field-name:data-type field-name:data-type
+ Format: generate tests model-name field-name:data-type field-name:data-type
  Example: generate tests blogPost mainTitle:String description:String 
  Short hand example: g t blogPost mainTitle:String description:String 
  ```
