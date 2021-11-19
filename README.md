@@ -1,9 +1,8 @@
 # :rocket: node-trekker
 
-### node-trekker is a simple npm package for people using node.js, express, and mongoose to create a RESTFUL api.
+### node-trekker is a rails inspired npm package for people using node.js, express, and mongoose to create a RESTFUL api.
 
 #### node-trekker can generate a working express server, with Create Read Update and Delete routes, a mongoose model, and a .rest file to test your routes. Or generate individual components as needed. 
-
 
 ## :one: Install and setup:
 #### :heavy_exclamation_mark: express, mongoose and dotenv are not required packages, but are what is supported here. :heavy_exclamation_mark:
@@ -23,7 +22,7 @@
 
 ```
  "scripts": {
-    "node-trecker": "node node_modules/node-trekker/index.js"
+    "node-trekker": "node node_modules/node-trekker/index.js"
   }
 ```
 
@@ -38,7 +37,6 @@
  ### Currently available data-types :String :File :Image
  ### If :File or :Image is going to be used used, Follow the below install instructions, as they will be required for use.
  #### :heavy_exclamation_mark: Also, if :File or :Image is being used. multipart/form data must be sent from the client side :heavy_exclamation_mark:
- #### :heavy_exclamation_mark: File or image delete routes not generated. Coming soon. :heavy_exclamation_mark: 
  
  ```npm install multer multer-gridfs-storage ```
 
