@@ -4,6 +4,8 @@
 
 #### node-trekker can generate a working express server, with Create Read Update and Delete routes, a mongoose model, and a .rest file to test your routes. Or generate individual components as needed. 
 
+## Please check out our wiki! https://github.com/Traceton/node-trekker/wiki
+
 ## :one: Install and setup:
 #### :heavy_exclamation_mark: express, mongoose and dotenv are not required packages, but are what is supported here. :heavy_exclamation_mark:
 
