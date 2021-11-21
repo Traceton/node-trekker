@@ -2,6 +2,8 @@ let helpMessage = `
 ********************
 Available commands:
 
+Please check out our wiki for more help! https://github.com/Traceton/node-trekker/wiki
+
   Currently available data-types :String :File :Image
   If :File or :Image is going to be used used, Follow the below install instructions, as they will be required for use.
   # :heavy_exclamation_mark: Also, if :File or :Image is being used. multipart/form data must be sent from the client side :heavy_exclamation_mark:
